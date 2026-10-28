@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STAR ANIME — Твоя аниме-вселенная</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="navbar">
+    <a class="logo" href="#">✦ STAR<span>ANIME</span></a>
+    <nav>
+      <a href="#home">Главная</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#genres">Жанры</a>
+    </nav>
+    <button class="login-btn" id="openAuth">Войти</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">✦ ТВОЯ АНИМЕ-ВСЕЛЕННАЯ</span>
+        <h1>Твой следующий<br>мир начинается <span>здесь.</span></h1>
+        <p>100 популярных аниме, разные жанры и истории,
+           которые останутся с тобой надолго.</p>
+        <a class="primary-btn" href="#catalog">Исследовать каталог ↗</a>
+        <div class="hero-stats">
+          <div><strong>100</strong><small>Аниме</small></div>
+          <div><strong>10+</strong><small>Жанров</small></div>
+          <div><strong>∞</strong><small>Историй</small></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="planet">✦</div>
+        <div class="floating-card">✧ ТВОЯ ИСТОРИЯ ЖДЁТ</div>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ТВОЯ КОЛЛЕКЦИЯ</span>
+          <h2>Открой свою <span>историю</span></h2>
+        </div>
+        <span class="result-count" id="resultCount">100 аниме</span>
+      </div>
+
+      <div class="search-wrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search"
+          placeholder="Найти аниме по названию..."
+          autocomplete="off">
+        <button id="clearSearch" aria-label="Очистить поиск">✕</button>
+      </div>
+
+      <div class="filters" id="genres">
+        <button class="filter active" data-genre="Все">Все</button>
+        <button class="filter" data-genre="Экшен">⚔ Экшен</button>
+        <button class="filter" data-genre="Романтика">♡ Романтика</button>
+        <button class="filter" data-genre="Фэнтези">✧ Фэнтези</button>
+        <button class="filter" data-genre="Комедия">☻ Комедия</button>
+        <button class="filter" data-genre="Драма">☾ Драма</button>
+        <button class="filter" data-genre="Спорт">⚽ Спорт</button>
+        <button class="filter" data-genre="Фантастика">⌁ Фантастика</button>
+        <button class="filter" data-genre="Триллер">◈ Триллер</button>
+        <button class="filter" data-genre="Приключения">➤ Приключения</button>
+      </div>
+
+      <div class="catalog-info">
+        <span id="currentCategory">Все аниме</span>
+        <span>✦ Выбирай своё следующее приключение</span>
+      </div>
+
+      <div class="anime-grid" id="animeGrid"></div>
+      <button id="loadMore" class="load-more">Показать ещё ↓</button>
+    </section>
+
+    <section class="favorites-section" id="favorites">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ТВОИ ИЗБРАННЫЕ</span>
+          <h2>Сохранённые <span>миры</span></h2>
+        </div>
+      </div>
+      <div id="favoriteGrid" class="anime-grid"></div>
+      <p id="emptyFavorites" class="empty-note">
+        ☆ Пока пусто. Нажми на сердечко в карточке аниме!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#">✦ STAR<span>ANIME</span></a>
+    <p>Создано для любителей аниме. Твоя вселенная — твои истории.</p>
+    <small>Фанатский каталог. Постеры загружаются из TMDB.</small>
+  </footer>
+
+  <div class="modal hidden" id="authModal">
+    <div class="auth-box">
+      <button class="close-modal" id="closeAuth">✕</button>
+      <div class="auth-logo">✦</div>
+      <h2 id="authTitle">Добро пожаловать!</h2>
+      <p id="authDescription">Войди в свою аниме-вселенную</p>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-mode="login">Войти</button>
+        <button class="auth-tab" data-mode="register">Регистрация</button>
+      </div>
+
+      <form id="authForm">
+        <label for="username">Имя пользователя</label>
+        <input id="username" required minlength="3" maxlength="24"
+          placeholder="Твой никнейм" autocomplete="username">
+
+        <label for="password">Пароль</label>
+        <input id="password" required minlength="6" type="password"
+          placeholder="Минимум 6 символов"
+          autocomplete="current-password">
+
+        <div id="authMessage" role="status"></div>
+        <button class="primary-btn full-btn" type="submit" id="authSubmit">
+          Войти в аккаунт
+        </button>
+      </form>
+      <p class="auth-note">Демо-версия: аккаунты хранятся в этом браузере.
+        Не используй настоящий пароль.</p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="detailModal">
+    <div class="detail-box">
+      <button class="close-modal" id="closeDetail">✕</button>
+      <img id="detailImage" src="" alt="Постер аниме">
+      <div class="detail-content">
+        <span class="eyebrow" id="detailGenre"></span>
+        <h2 id="detailTitle"></h2>
+        <p id="detailDescription"></p>
+        <p id="detailRating" class="rating"></p>
+        <button class="primary-btn" id="detailFavorite">♡ В избранное</button>
+        <a id="officialLink" class="official-link" target="_blank"
+           rel="noopener noreferrer">Найти официальные источники ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
